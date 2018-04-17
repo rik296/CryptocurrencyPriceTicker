@@ -10,10 +10,21 @@
 #import "API_Handler.h"
 #import "CurrencyCell.h"
 
+#define FETCH_LIMIT 100
+
 @interface HomeViewController ()
 {
     NSMutableArray *currenciesArray;
+    NSMutableArray *filterCurrenciesArray;
+    BOOL isDoingSync;
+    NSInteger currentFetchStart;
+    NSNumberFormatter *numberFormatter;
+    
     __weak IBOutlet UITableView *m_tableView;
+    __weak IBOutlet UIActivityIndicatorView *loadingIndicator;
+    __weak IBOutlet UISearchBar *keywordSearchBar;
+    __weak IBOutlet UISegmentedControl *m_segment;
+    __weak IBOutlet NSLayoutConstraint *constraintBottomTableView;
 }
 @end
 
@@ -23,14 +34,43 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    numberFormatter = [[NSNumberFormatter alloc] init];
+    numberFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    
     currenciesArray = [[NSMutableArray alloc] init];
+    filterCurrenciesArray = [[NSMutableArray alloc] init];
+    
+    m_segment.selectedSegmentIndex = 1;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self initDisplayData];
 }
 
 - (IBAction)refreshAction:(id)sender {
+    [self refreshTop100Data];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark Get Data
+
+- (void)initDisplayData
+{
+    currentFetchStart = 0;
+    isDoingSync = YES;
+    
+    // fetch data from database for initial display
     [[API_Handler singleton]
-     getTicker:E_CLOUD
-     andStart:0
-     andLimit:100
+     getTicker:E_DATABASE
+     andStart:currentFetchStart
+     andLimit:FETCH_LIMIT
      andConvert:nil
      success:^(NSArray<TableCurrency*>* currencies) {
          
@@ -40,15 +80,89 @@
              [currenciesArray addObject:item];
          }
          [m_tableView reloadData];
+         
+         // then renew data from Cloud
+         [[API_Handler singleton]
+          getTicker:E_CLOUD
+          andStart:currentFetchStart
+          andLimit:FETCH_LIMIT
+          andConvert:nil
+          success:^(NSArray<TableCurrency*>* currencies) {
+              
+              [currenciesArray removeAllObjects];
+              for (TableCurrency *item in currencies)
+              {
+                  [currenciesArray addObject:item];
+              }
+              [m_tableView reloadData];
+              
+              currentFetchStart += 100;
+              isDoingSync = NO;
+          }
+          failure:^(NSInteger retCode) {
+              isDoingSync = NO;
+          }];
      }
      failure:^(NSInteger retCode) {
-         
+         isDoingSync = NO;
      }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)refreshTop100Data
+{
+    currentFetchStart = 0;
+    
+    [[API_Handler singleton]
+     getTicker:E_CLOUD
+     andStart:currentFetchStart
+     andLimit:FETCH_LIMIT
+     andConvert:nil
+     success:^(NSArray<TableCurrency*>* currencies) {
+         
+         [currenciesArray removeAllObjects];
+         for (TableCurrency *item in currencies)
+         {
+             [currenciesArray addObject:item];
+         }
+         
+         currentFetchStart += 100;
+         isDoingSync = NO;
+         m_tableView.contentOffset = CGPointMake(0, 0 - m_tableView.contentInset.top);
+         [m_tableView reloadData];
+     }
+     failure:^(NSInteger retCode) {
+         isDoingSync = NO;
+     }];
+}
+
+- (void)getMoreData
+{
+    [[API_Handler singleton]
+     getTicker:E_CLOUD
+     andStart:currentFetchStart
+     andLimit:FETCH_LIMIT
+     andConvert:nil
+     success:^(NSArray<TableCurrency*>* currencies) {
+         
+         for (TableCurrency *item in currencies)
+         {
+             [currenciesArray addObject:item];
+         }
+         [m_tableView reloadData];
+         
+         constraintBottomTableView.constant = 0.0;
+         [self.view layoutIfNeeded];
+         [loadingIndicator stopAnimating];
+         
+         currentFetchStart += 100;
+         isDoingSync = NO;
+     }
+     failure:^(NSInteger retCode) {
+         isDoingSync = NO;
+         constraintBottomTableView.constant = 0.0;
+         [self.view layoutIfNeeded];
+         [loadingIndicator stopAnimating];
+     }];
 }
 
 #pragma mark -
@@ -56,7 +170,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [currenciesArray count];
+    [self keywordFilter];
+    return [filterCurrenciesArray count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -82,25 +197,134 @@
         cell = (CurrencyCell*)[m_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     
-    TableCurrency *item = [currenciesArray objectAtIndex:row];
+    TableCurrency *item = [filterCurrenciesArray objectAtIndex:row];
+    
+    // symbol
     [cell.symbol setText:item.symbol];
+    
+    // icon image
     NSString *symbol = [item.symbol lowercaseString];
-    [cell.icon setImage:[UIImage imageNamed:symbol]];
+    UIImage *iconImage = [UIImage imageNamed:symbol];
+    [cell.icon setImage:(iconImage != nil ? iconImage : [UIImage imageNamed:@"other"])];
+    
+    // rank and name
     NSString *rankAndName = [NSString stringWithFormat:@"#%@ %@", item.rank, item.name];
     [cell.rankAndName setText:rankAndName];
     
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    numberFormatter.groupingSize = 3;
-    numberFormatter.usesGroupingSeparator = YES;
-    numberFormatter.groupingSeparator = @",";
-    numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    cell.value.text = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithFloat:[item.price_usd floatValue]]]];
+    // value
+    double displayValue = 0.0;
+    switch (m_segment.selectedSegmentIndex) {
+        case 0:
+            displayValue = [item.market_cap_usd doubleValue];
+            break;
+        case 1:
+            displayValue = [item.price_usd doubleValue];
+            break;
+        case 2:
+            displayValue = [item.s24h_volume_usd doubleValue];
+            break;
+        case 3:
+            displayValue = [item.price_usd doubleValue];
+            break;
+        default:
+            break;
+    }
+    cell.value.text = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:displayValue]]];
     
+    // percent view
     float percent = [item.percent_change_24h floatValue];
-    [cell.percentView setBackgroundColor:(percent < 0 ? [UIColor colorWithRed:203.0/255.0 green:27.0/255.0 blue:69.0/255.0 alpha:1.0] : [UIColor colorWithRed:134.0/255.0 green:193.0/255.0 blue:102.0/255.0 alpha:1.0])];
-    [cell.percent setText:[NSString stringWithFormat:@"%@%%", item.percent_change_24h]];
+    if (percent == 0.0)
+    {
+        [cell.percentView setBackgroundColor:[UIColor lightGrayColor]];
+    }
+    else
+    {
+        [cell.percentView setBackgroundColor:(percent < 0 ? [UIColor colorWithRed:203.0/255.0 green:27.0/255.0 blue:69.0/255.0 alpha:1.0] : [UIColor colorWithRed:134.0/255.0 green:193.0/255.0 blue:102.0/255.0 alpha:1.0])];
+    }
+    [cell.percent setText:[NSString stringWithFormat:@"%@%%", (item.percent_change_24h.length > 0 ? item.percent_change_24h : @"0.00")]];
     
     return cell;
+}
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [m_tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView
+{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+ 
+    [keywordSearchBar resignFirstResponder];
+    
+    if (h > [UIScreen mainScreen].bounds.size.height)
+    {
+        float reload_distance = 10.0;
+        if ((y > h + reload_distance) && (isDoingSync == NO))
+        {
+            NSLog(@"[HomeViewController] Get More Currencies");
+            isDoingSync = YES;
+            constraintBottomTableView.constant = 57.0;
+            [self.view layoutIfNeeded];
+            [loadingIndicator setHidden:NO];
+            [loadingIndicator startAnimating];
+            [self getMoreData];
+        }
+    }
+    
+    /*
+    if (offset.y < -100 && (isDoingSync == NO))
+    {
+        NSLog(@"[HomeViewController] Refresh Top 100 Currencies");
+        isDoingSync = YES;
+        [self refreshTop100Data];
+    }
+     */
+}
+
+#pragma mark -
+#pragma mark Search Bar delegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"Filter : %@", searchText);
+    [m_tableView reloadData];
+}
+
+- (void)keywordFilter
+{
+    [filterCurrenciesArray removeAllObjects];
+    
+    if (keywordSearchBar.text.length == 0)
+    {
+        [filterCurrenciesArray setArray:currenciesArray];
+    }
+    else
+    {
+        for (TableCurrency *item in currenciesArray)
+        {
+            if ([item.symbol containsString:[keywordSearchBar.text uppercaseString]])
+            {
+                [filterCurrenciesArray addObject:item];
+            }
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark UISegment Action
+
+- (IBAction)segmentAction:(id)sender
+{
+    [m_tableView reloadData];
 }
 
 @end

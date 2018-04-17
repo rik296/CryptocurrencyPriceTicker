@@ -51,24 +51,17 @@
             currency.name = [item objectForKey:@"name"];
             currency.symbol = [item objectForKey:@"symbol"];
             currency.rank = [NSNumber numberWithInteger:[[item objectForKey:@"rank"] integerValue]];
-            currency.price_usd = [item objectForKey:@"price_usd"];
-            currency.price_btc = [item objectForKey:@"price_btc"];
-            currency.s24h_volume_usd = [item objectForKey:@"24h_volume_usd"];
-            currency.market_cap_usd = [item objectForKey:@"market_cap_usd"];
-            currency.available_supply = [item objectForKey:@"available_supply"];
-            currency.total_supply = [item objectForKey:@"total_supply"];
-            if ([item objectForKey:@"max_supply"] != nil && ![[item objectForKey:@"max_supply"] isKindOfClass:[NSNull class]])
-            {
-                currency.max_supply = [item objectForKey:@"max_supply"];
-            }
-            else
-            {
-                currency.max_supply = @"";
-            }
-            currency.percent_change_1h = [item objectForKey:@"percent_change_1h"];
-            currency.percent_change_24h = [item objectForKey:@"percent_change_24h"];
-            currency.percent_change_7d = [item objectForKey:@"percent_change_7d"];
-            currency.last_updated = [item objectForKey:@"last_updated"];
+            currency.price_usd = [self checkIsValidData:@"price_usd" andData:item] ? [item objectForKey:@"price_usd"] : @"";
+            currency.price_btc = [self checkIsValidData:@"price_btc" andData:item] ? [item objectForKey:@"price_btc"] : @"";
+            currency.s24h_volume_usd = [self checkIsValidData:@"24h_volume_usd" andData:item] ? [item objectForKey:@"24h_volume_usd"] : @"";
+            currency.market_cap_usd = [self checkIsValidData:@"market_cap_usd" andData:item] ? [item objectForKey:@"market_cap_usd"] : @"";
+            currency.available_supply = [self checkIsValidData:@"available_supply" andData:item] ? [item objectForKey:@"available_supply"] : @"";
+            currency.total_supply = [self checkIsValidData:@"total_supply" andData:item] ? [item objectForKey:@"total_supply"] : @"";
+            currency.max_supply = [self checkIsValidData:@"max_supply" andData:item] ? [item objectForKey:@"max_supply"] : @"";
+            currency.percent_change_1h = [self checkIsValidData:@"percent_change_1h" andData:item] ? [item objectForKey:@"percent_change_1h"] : @"";
+            currency.percent_change_24h = [self checkIsValidData:@"percent_change_24h" andData:item] ? [item objectForKey:@"percent_change_24h"] : @"";
+            currency.percent_change_7d = [self checkIsValidData:@"percent_change_7d" andData:item] ? [item objectForKey:@"percent_change_7d"] : @"";
+            currency.last_updated = [self checkIsValidData:@"last_updated" andData:item] ? [item objectForKey:@"last_updated"] : @"";
             
             if ([self isTheSameObject:currency])
             {
@@ -123,6 +116,18 @@
     }
     
     if ([itemArray count] > 0)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (BOOL)checkIsValidData:(NSString*)key andData:(id)data
+{
+    if ([data objectForKey:key] != nil && ![[data objectForKey:key] isKindOfClass:[NSNull class]])
     {
         return YES;
     }
