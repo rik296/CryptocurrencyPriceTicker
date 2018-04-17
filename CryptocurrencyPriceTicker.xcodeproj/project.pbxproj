@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92A07C582081D2D700F72302 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C572081D2D700F72302 /* AppDelegate.m */; };
+		92A07C5B2081D2D700F72302 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C5A2081D2D700F72302 /* HomeViewController.m */; };
+		92A07C5E2081D2D700F72302 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C5D2081D2D700F72302 /* FavoriteViewController.m */; };
+		92A07C612081D2D700F72302 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A07C5F2081D2D700F72302 /* Main.storyboard */; };
+		92A07C632081D2D700F72302 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92A07C622081D2D700F72302 /* Assets.xcassets */; };
+		92A07C662081D2D700F72302 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A07C642081D2D700F72302 /* LaunchScreen.storyboard */; };
+		92A07C692081D2D700F72302 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C682081D2D700F72302 /* main.m */; };
+		92A07CCD2081FBBF00F72302 /* Http_Handler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CCB2081FBBE00F72302 /* Http_Handler.mm */; };
+		92A07CD12082061900F72302 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A07CD02082061900F72302 /* libxml2.tbd */; };
+		92A07CD32082064500F72302 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A07CD22082064500F72302 /* libz.tbd */; };
+		92A07CD52082064C00F72302 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A07CD42082064C00F72302 /* libsqlite3.tbd */; };
+		92A07CD8208215FE00F72302 /* API_Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CD7208215FE00F72302 /* API_Handler.m */; };
+		92A07CE12082540100F72302 /* NSManagedObjectContext-EasyFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CDD2082540100F72302 /* NSManagedObjectContext-EasyFetch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		92A07CE22082540100F72302 /* NSManagedObjectExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CDE2082540100F72302 /* NSManagedObjectExt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		92A07CE52082547800F72302 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CE32082547800F72302 /* Model.xcdatamodeld */; };
+		92A07CE820825AC600F72302 /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CE720825AC600F72302 /* Currency.m */; };
+		92A07CEB20825CDC00F72302 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CEA20825CDC00F72302 /* GlobalData.m */; };
+		92A07CEE20825E7800F72302 /* TableCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CED20825E7800F72302 /* TableCurrency.m */; };
+		92A07CF12082603600F72302 /* TableGlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CF02082603600F72302 /* TableGlobalData.m */; };
+		92A07CF42082619200F72302 /* CoreData_Mgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07CF32082619200F72302 /* CoreData_Mgr.m */; };
+		92B765AB208592BB00AC28BE /* libASIHttp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B76585208592BB00AC28BE /* libASIHttp.a */; };
+		92B765AC208592BB00AC28BE /* README-GHUnit in Resources */ = {isa = PBXBuildFile; fileRef = 92B765AA208592BB00AC28BE /* README-GHUnit */; };
+		92ECF071208330F700657BAC /* DataBase_Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ECF070208330F700657BAC /* DataBase_Handler.m */; };
+		92ECF0772084C4C400657BAC /* CurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ECF0752084C4C400657BAC /* CurrencyCell.m */; };
+		92ECF0782084C4C400657BAC /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92ECF0762084C4C400657BAC /* CurrencyCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		92A07C532081D2D700F72302 /* CryptocurrencyPriceTicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptocurrencyPriceTicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92A07C562081D2D700F72302 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		92A07C572081D2D700F72302 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		92A07C592081D2D700F72302 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		92A07C5A2081D2D700F72302 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		92A07C5C2081D2D700F72302 /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
+		92A07C5D2081D2D700F72302 /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
+		92A07C602081D2D700F72302 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		92A07C622081D2D700F72302 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92A07C652081D2D700F72302 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92A07C672081D2D700F72302 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92A07C682081D2D700F72302 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		92A07CCB2081FBBE00F72302 /* Http_Handler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Http_Handler.mm; path = CryptocurrencyPriceTicker/Cloud/Http_Handler.mm; sourceTree = SOURCE_ROOT; };
+		92A07CCC2081FBBF00F72302 /* Http_Handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Http_Handler.h; path = CryptocurrencyPriceTicker/Cloud/Http_Handler.h; sourceTree = SOURCE_ROOT; };
+		92A07CD02082061900F72302 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		92A07CD22082064500F72302 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		92A07CD42082064C00F72302 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		92A07CD6208215FE00F72302 /* API_Handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API_Handler.h; sourceTree = "<group>"; };
+		92A07CD7208215FE00F72302 /* API_Handler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = API_Handler.m; sourceTree = "<group>"; };
+		92A07CDC2082540100F72302 /* NSManagedObjectExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectExt.h; sourceTree = "<group>"; };
+		92A07CDD2082540100F72302 /* NSManagedObjectContext-EasyFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext-EasyFetch.m"; sourceTree = "<group>"; };
+		92A07CDE2082540100F72302 /* NSManagedObjectExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectExt.m; sourceTree = "<group>"; };
+		92A07CDF2082540100F72302 /* NSManagedObjectContext-EasyFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext-EasyFetch.h"; sourceTree = "<group>"; };
+		92A07CE42082547800F72302 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		92A07CE620825AC600F72302 /* Currency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		92A07CE720825AC600F72302 /* Currency.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		92A07CE920825CDC00F72302 /* GlobalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
+		92A07CEA20825CDC00F72302 /* GlobalData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
+		92A07CEC20825E7800F72302 /* TableCurrency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableCurrency.h; sourceTree = "<group>"; };
+		92A07CED20825E7800F72302 /* TableCurrency.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableCurrency.m; sourceTree = "<group>"; };
+		92A07CEF2082603600F72302 /* TableGlobalData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableGlobalData.h; sourceTree = "<group>"; };
+		92A07CF02082603600F72302 /* TableGlobalData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableGlobalData.m; sourceTree = "<group>"; };
+		92A07CF22082619200F72302 /* CoreData_Mgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreData_Mgr.h; sourceTree = "<group>"; };
+		92A07CF32082619200F72302 /* CoreData_Mgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreData_Mgr.m; sourceTree = "<group>"; };
+		92B76585208592BB00AC28BE /* libASIHttp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libASIHttp.a; sourceTree = "<group>"; };
+		92B76589208592BB00AC28BE /* ASICloudFilesObjectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesObjectRequest.h; sourceTree = "<group>"; };
+		92B7658A208592BB00AC28BE /* ASICloudFilesCDNRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesCDNRequest.h; sourceTree = "<group>"; };
+		92B7658B208592BB00AC28BE /* ASICloudFilesObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesObject.h; sourceTree = "<group>"; };
+		92B7658C208592BB00AC28BE /* ASICloudFilesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesRequest.h; sourceTree = "<group>"; };
+		92B7658D208592BB00AC28BE /* ASICloudFilesContainerXMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainerXMLParserDelegate.h; sourceTree = "<group>"; };
+		92B7658E208592BB00AC28BE /* ASICloudFilesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainer.h; sourceTree = "<group>"; };
+		92B7658F208592BB00AC28BE /* ASICloudFilesContainerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICloudFilesContainerRequest.h; sourceTree = "<group>"; };
+		92B76591208592BB00AC28BE /* ASINSXMLParserCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINSXMLParserCompat.h; sourceTree = "<group>"; };
+		92B76592208592BB00AC28BE /* ASIS3BucketObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3BucketObject.h; sourceTree = "<group>"; };
+		92B76593208592BB00AC28BE /* ASIS3Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3Bucket.h; sourceTree = "<group>"; };
+		92B76594208592BB00AC28BE /* ASIS3BucketRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3BucketRequest.h; sourceTree = "<group>"; };
+		92B76595208592BB00AC28BE /* ASIS3Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3Request.h; sourceTree = "<group>"; };
+		92B76596208592BB00AC28BE /* ASIS3ObjectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ObjectRequest.h; sourceTree = "<group>"; };
+		92B76597208592BB00AC28BE /* ASIS3ServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ServiceRequest.h; sourceTree = "<group>"; };
+		92B76598208592BB00AC28BE /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		92B76599208592BB00AC28BE /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		92B7659A208592BB00AC28BE /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		92B7659B208592BB00AC28BE /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		92B7659C208592BB00AC28BE /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		92B7659D208592BB00AC28BE /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		92B7659E208592BB00AC28BE /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		92B7659F208592BB00AC28BE /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		92B765A0208592BB00AC28BE /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		92B765A1208592BB00AC28BE /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		92B765A2208592BB00AC28BE /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		92B765A4208592BB00AC28BE /* ASIWebPageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIWebPageRequest.h; sourceTree = "<group>"; };
+		92B765A5208592BB00AC28BE /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		92B765A8208592BB00AC28BE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		92B765AA208592BB00AC28BE /* README-GHUnit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README-GHUnit"; sourceTree = "<group>"; };
+		92ECF06F208330F700657BAC /* DataBase_Handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataBase_Handler.h; sourceTree = "<group>"; };
+		92ECF070208330F700657BAC /* DataBase_Handler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataBase_Handler.m; sourceTree = "<group>"; };
+		92ECF0742084C4C400657BAC /* CurrencyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrencyCell.h; sourceTree = "<group>"; };
+		92ECF0752084C4C400657BAC /* CurrencyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CurrencyCell.m; sourceTree = "<group>"; };
+		92ECF0762084C4C400657BAC /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92A07C502081D2D700F72302 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92A07CD52082064C00F72302 /* libsqlite3.tbd in Frameworks */,
+				92A07CD32082064500F72302 /* libz.tbd in Frameworks */,
+				92A07CD12082061900F72302 /* libxml2.tbd in Frameworks */,
+				92B765AB208592BB00AC28BE /* libASIHttp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92A07C4A2081D2D700F72302 = {
+			isa = PBXGroup;
+			children = (
+				92A07C552081D2D700F72302 /* CryptocurrencyPriceTicker */,
+				92A07C542081D2D700F72302 /* Products */,
+				92A07CCF2082061800F72302 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		92A07C542081D2D700F72302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92A07C532081D2D700F72302 /* CryptocurrencyPriceTicker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92A07C552081D2D700F72302 /* CryptocurrencyPriceTicker */ = {
+			isa = PBXGroup;
+			children = (
+				92A07C742081FA7300F72302 /* Cloud */,
+				92A07CD9208252C800F72302 /* CoreData */,
+				92ECF0732084C49000657BAC /* CellView */,
+				92A07C562081D2D700F72302 /* AppDelegate.h */,
+				92A07C572081D2D700F72302 /* AppDelegate.m */,
+				92A07C592081D2D700F72302 /* HomeViewController.h */,
+				92A07C5A2081D2D700F72302 /* HomeViewController.m */,
+				92A07C5C2081D2D700F72302 /* FavoriteViewController.h */,
+				92A07C5D2081D2D700F72302 /* FavoriteViewController.m */,
+				92A07C5F2081D2D700F72302 /* Main.storyboard */,
+				92A07C622081D2D700F72302 /* Assets.xcassets */,
+				92A07C642081D2D700F72302 /* LaunchScreen.storyboard */,
+				92A07C672081D2D700F72302 /* Info.plist */,
+				92A07C682081D2D700F72302 /* main.m */,
+			);
+			path = CryptocurrencyPriceTicker;
+			sourceTree = "<group>";
+		};
+		92A07C742081FA7300F72302 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				92B76584208592BB00AC28BE /* libASIHttp */,
+				92A07CCC2081FBBF00F72302 /* Http_Handler.h */,
+				92A07CCB2081FBBE00F72302 /* Http_Handler.mm */,
+				92A07CD6208215FE00F72302 /* API_Handler.h */,
+				92A07CD7208215FE00F72302 /* API_Handler.m */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
+		92A07CCF2082061800F72302 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92A07CD42082064C00F72302 /* libsqlite3.tbd */,
+				92A07CD22082064500F72302 /* libz.tbd */,
+				92A07CD02082061900F72302 /* libxml2.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92A07CD9208252C800F72302 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				92A07CDB2082540100F72302 /* NSManagedObjectExt */,
+				92A07CDA2082540100F72302 /* Entity */,
+				92A07CE02082540100F72302 /* Wrapper */,
+				92A07CE32082547800F72302 /* Model.xcdatamodeld */,
+				92A07CF22082619200F72302 /* CoreData_Mgr.h */,
+				92A07CF32082619200F72302 /* CoreData_Mgr.m */,
+				92ECF06F208330F700657BAC /* DataBase_Handler.h */,
+				92ECF070208330F700657BAC /* DataBase_Handler.m */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		92A07CDA2082540100F72302 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				92A07CE620825AC600F72302 /* Currency.h */,
+				92A07CE720825AC600F72302 /* Currency.m */,
+				92A07CE920825CDC00F72302 /* GlobalData.h */,
+				92A07CEA20825CDC00F72302 /* GlobalData.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		92A07CDB2082540100F72302 /* NSManagedObjectExt */ = {
+			isa = PBXGroup;
+			children = (
+				92A07CDC2082540100F72302 /* NSManagedObjectExt.h */,
+				92A07CDD2082540100F72302 /* NSManagedObjectContext-EasyFetch.m */,
+				92A07CDE2082540100F72302 /* NSManagedObjectExt.m */,
+				92A07CDF2082540100F72302 /* NSManagedObjectContext-EasyFetch.h */,
+			);
+			path = NSManagedObjectExt;
+			sourceTree = "<group>";
+		};
+		92A07CE02082540100F72302 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				92A07CEC20825E7800F72302 /* TableCurrency.h */,
+				92A07CED20825E7800F72302 /* TableCurrency.m */,
+				92A07CEF2082603600F72302 /* TableGlobalData.h */,
+				92A07CF02082603600F72302 /* TableGlobalData.m */,
+			);
+			path = Wrapper;
+			sourceTree = "<group>";
+		};
+		92B76584208592BB00AC28BE /* libASIHttp */ = {
+			isa = PBXGroup;
+			children = (
+				92B76586208592BB00AC28BE /* Header */,
+				92B76585208592BB00AC28BE /* libASIHttp.a */,
+			);
+			path = libASIHttp;
+			sourceTree = "<group>";
+		};
+		92B76586208592BB00AC28BE /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				92B76587208592BB00AC28BE /* Classes */,
+				92B765A6208592BB00AC28BE /* External */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		92B76587208592BB00AC28BE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				92B76588208592BB00AC28BE /* CloudFiles */,
+				92B76590208592BB00AC28BE /* S3 */,
+				92B76598208592BB00AC28BE /* ASIHTTPRequestDelegate.h */,
+				92B76599208592BB00AC28BE /* ASINetworkQueue.h */,
+				92B7659A208592BB00AC28BE /* ASIHTTPRequestConfig.h */,
+				92B7659B208592BB00AC28BE /* ASIDownloadCache.h */,
+				92B7659C208592BB00AC28BE /* ASIHTTPRequest.h */,
+				92B7659D208592BB00AC28BE /* ASICacheDelegate.h */,
+				92B7659E208592BB00AC28BE /* ASIDataCompressor.h */,
+				92B7659F208592BB00AC28BE /* ASIProgressDelegate.h */,
+				92B765A0208592BB00AC28BE /* ASIFormDataRequest.h */,
+				92B765A1208592BB00AC28BE /* ASIDataDecompressor.h */,
+				92B765A2208592BB00AC28BE /* ASIInputStream.h */,
+				92B765A3208592BB00AC28BE /* ASIWebPageRequest */,
+				92B765A5208592BB00AC28BE /* ASIAuthenticationDialog.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		92B76588208592BB00AC28BE /* CloudFiles */ = {
+			isa = PBXGroup;
+			children = (
+				92B76589208592BB00AC28BE /* ASICloudFilesObjectRequest.h */,
+				92B7658A208592BB00AC28BE /* ASICloudFilesCDNRequest.h */,
+				92B7658B208592BB00AC28BE /* ASICloudFilesObject.h */,
+				92B7658C208592BB00AC28BE /* ASICloudFilesRequest.h */,
+				92B7658D208592BB00AC28BE /* ASICloudFilesContainerXMLParserDelegate.h */,
+				92B7658E208592BB00AC28BE /* ASICloudFilesContainer.h */,
+				92B7658F208592BB00AC28BE /* ASICloudFilesContainerRequest.h */,
+			);
+			path = CloudFiles;
+			sourceTree = "<group>";
+		};
+		92B76590208592BB00AC28BE /* S3 */ = {
+			isa = PBXGroup;
+			children = (
+				92B76591208592BB00AC28BE /* ASINSXMLParserCompat.h */,
+				92B76592208592BB00AC28BE /* ASIS3BucketObject.h */,
+				92B76593208592BB00AC28BE /* ASIS3Bucket.h */,
+				92B76594208592BB00AC28BE /* ASIS3BucketRequest.h */,
+				92B76595208592BB00AC28BE /* ASIS3Request.h */,
+				92B76596208592BB00AC28BE /* ASIS3ObjectRequest.h */,
+				92B76597208592BB00AC28BE /* ASIS3ServiceRequest.h */,
+			);
+			path = S3;
+			sourceTree = "<group>";
+		};
+		92B765A3208592BB00AC28BE /* ASIWebPageRequest */ = {
+			isa = PBXGroup;
+			children = (
+				92B765A4208592BB00AC28BE /* ASIWebPageRequest.h */,
+			);
+			path = ASIWebPageRequest;
+			sourceTree = "<group>";
+		};
+		92B765A6208592BB00AC28BE /* External */ = {
+			isa = PBXGroup;
+			children = (
+				92B765A7208592BB00AC28BE /* Reachability */,
+				92B765A9208592BB00AC28BE /* GHUnit */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		92B765A7208592BB00AC28BE /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				92B765A8208592BB00AC28BE /* Reachability.h */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		92B765A9208592BB00AC28BE /* GHUnit */ = {
+			isa = PBXGroup;
+			children = (
+				92B765AA208592BB00AC28BE /* README-GHUnit */,
+			);
+			path = GHUnit;
+			sourceTree = "<group>";
+		};
+		92ECF0732084C49000657BAC /* CellView */ = {
+			isa = PBXGroup;
+			children = (
+				92ECF0742084C4C400657BAC /* CurrencyCell.h */,
+				92ECF0752084C4C400657BAC /* CurrencyCell.m */,
+				92ECF0762084C4C400657BAC /* CurrencyCell.xib */,
+			);
+			path = CellView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92A07C522081D2D700F72302 /* CryptocurrencyPriceTicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92A07C6C2081D2D700F72302 /* Build configuration list for PBXNativeTarget "CryptocurrencyPriceTicker" */;
+			buildPhases = (
+				92A07C4F2081D2D700F72302 /* Sources */,
+				92A07C502081D2D700F72302 /* Frameworks */,
+				92A07C512081D2D700F72302 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CryptocurrencyPriceTicker;
+			productName = CryptocurrencyPriceTicker;
+			productReference = 92A07C532081D2D700F72302 /* CryptocurrencyPriceTicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92A07C4B2081D2D700F72302 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Rik Tsai";
+				TargetAttributes = {
+					92A07C522081D2D700F72302 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 92A07C4E2081D2D700F72302 /* Build configuration list for PBXProject "CryptocurrencyPriceTicker" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 92A07C4A2081D2D700F72302;
+			productRefGroup = 92A07C542081D2D700F72302 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92A07C522081D2D700F72302 /* CryptocurrencyPriceTicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92A07C512081D2D700F72302 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92B765AC208592BB00AC28BE /* README-GHUnit in Resources */,
+				92A07C662081D2D700F72302 /* LaunchScreen.storyboard in Resources */,
+				92A07C632081D2D700F72302 /* Assets.xcassets in Resources */,
+				92A07C612081D2D700F72302 /* Main.storyboard in Resources */,
+				92ECF0782084C4C400657BAC /* CurrencyCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92A07C4F2081D2D700F72302 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92A07CCD2081FBBF00F72302 /* Http_Handler.mm in Sources */,
+				92A07C5E2081D2D700F72302 /* FavoriteViewController.m in Sources */,
+				92A07CEE20825E7800F72302 /* TableCurrency.m in Sources */,
+				92A07C582081D2D700F72302 /* AppDelegate.m in Sources */,
+				92A07CF12082603600F72302 /* TableGlobalData.m in Sources */,
+				92ECF0772084C4C400657BAC /* CurrencyCell.m in Sources */,
+				92A07CE12082540100F72302 /* NSManagedObjectContext-EasyFetch.m in Sources */,
+				92A07C692081D2D700F72302 /* main.m in Sources */,
+				92A07CD8208215FE00F72302 /* API_Handler.m in Sources */,
+				92A07CF42082619200F72302 /* CoreData_Mgr.m in Sources */,
+				92A07CE820825AC600F72302 /* Currency.m in Sources */,
+				92A07CEB20825CDC00F72302 /* GlobalData.m in Sources */,
+				92A07C5B2081D2D700F72302 /* HomeViewController.m in Sources */,
+				92ECF071208330F700657BAC /* DataBase_Handler.m in Sources */,
+				92A07CE22082540100F72302 /* NSManagedObjectExt.m in Sources */,
+				92A07CE52082547800F72302 /* Model.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		92A07C5F2081D2D700F72302 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92A07C602081D2D700F72302 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		92A07C642081D2D700F72302 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92A07C652081D2D700F72302 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		92A07C6A2081D2D700F72302 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		92A07C6B2081D2D700F72302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92A07C6D2081D2D700F72302 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZNG62E4R97;
+				HEADER_SEARCH_PATHS = "\"$(SDK_DIR)\"/usr/include/libxml2";
+				INFOPLIST_FILE = CryptocurrencyPriceTicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/CryptocurrencyPriceTicker/Cloud/libASIHttp";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rik.CryptocurrencyPriceTicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		92A07C6E2081D2D700F72302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZNG62E4R97;
+				HEADER_SEARCH_PATHS = "\"$(SDK_DIR)\"/usr/include/libxml2";
+				INFOPLIST_FILE = CryptocurrencyPriceTicker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/CryptocurrencyPriceTicker/Cloud/libASIHttp";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rik.CryptocurrencyPriceTicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92A07C4E2081D2D700F72302 /* Build configuration list for PBXProject "CryptocurrencyPriceTicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92A07C6A2081D2D700F72302 /* Debug */,
+				92A07C6B2081D2D700F72302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92A07C6C2081D2D700F72302 /* Build configuration list for PBXNativeTarget "CryptocurrencyPriceTicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92A07C6D2081D2D700F72302 /* Debug */,
+				92A07C6E2081D2D700F72302 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		92A07CE32082547800F72302 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				92A07CE42082547800F72302 /* Model.xcdatamodel */,
+			);
+			currentVersion = 92A07CE42082547800F72302 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 92A07C4B2081D2D700F72302 /* Project object */;
+}

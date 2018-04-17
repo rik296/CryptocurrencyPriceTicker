@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="available_supply" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coinID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fiat_convert" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="last_updated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="market_cap_usd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="max_supply" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percent_change_1h" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percent_change_7d" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percent_change_24h" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_btc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_usd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="s24h_volume_usd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="symbol" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total_supply" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="GlobalData" representedClassName="GlobalData" syncable="YES">
+        <attribute name="active_assets" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="active_currencies" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="active_markets" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="bitcoin_percentage_of_market_cap" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fiat_convert" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="last_updated" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="total_24h_volume_usd" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="total_market_cap_usd" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Currency" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="GlobalData" positionX="-54" positionY="108" width="128" height="165"/>
+    </elements>
+</model>
