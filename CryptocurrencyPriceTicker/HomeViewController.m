@@ -8,7 +8,9 @@
 
 #import "HomeViewController.h"
 #import "API_Handler.h"
+#import "DataBase_Handler.h"
 #import "CurrencyCell.h"
+#import "FiatConvertViewController.h"
 
 #define FETCH_LIMIT 100
 
@@ -42,6 +44,13 @@
     filterCurrenciesArray = [[NSMutableArray alloc] init];
     
     m_segment.selectedSegmentIndex = 1;
+    m_tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleCellViewLongPress:)];
+    lpgr.minimumPressDuration = 1.3; //seconds
+    lpgr.delegate = self;
+    [m_tableView addGestureRecognizer:lpgr];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -250,7 +259,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
+    UIStoryboard* story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self.navigationController pushViewController:[story instantiateViewControllerWithIdentifier:@"FiatConvertViewController"] animated:YES];
+    
     [m_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -290,6 +302,44 @@
      */
 }
 
+-(void)handleCellViewLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:m_tableView];
+    
+    NSIndexPath *indexPath = [m_tableView indexPathForRowAtPoint:p];
+    if (indexPath == nil) {
+        NSLog(@"long press on table view but not on a row");
+    }
+    else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"long press on table view at row %ld", indexPath.row);
+    }
+    else {
+        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+    }
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Add to My Favorite?" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        // Cancel button tappped.
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        
+        // OK button tapped.
+        // add favorite currency
+        TableCurrency *theCurrency = [filterCurrenciesArray objectAtIndex:indexPath.row];
+        theCurrency.favorite = @(YES);
+        [[DataBase_Handler singleton] storeModifyCurrency:theCurrency];
+        
+        [self dismissViewControllerAnimated:YES completion:^{}];
+    }]];
+    
+    // Present action sheet.
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
 #pragma mark -
 #pragma mark Search Bar delegate
 
@@ -297,6 +347,11 @@
 {
     NSLog(@"Filter : %@", searchText);
     [m_tableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)theSearchBar
+{
+    [theSearchBar resignFirstResponder];
 }
 
 - (void)keywordFilter

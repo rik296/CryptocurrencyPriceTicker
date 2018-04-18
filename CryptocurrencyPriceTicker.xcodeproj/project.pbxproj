@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925B55AC2086F219002A4CB8 /* FiatConvertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925B55AB2086F219002A4CB8 /* FiatConvertViewController.m */; };
 		92A07C582081D2D700F72302 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C572081D2D700F72302 /* AppDelegate.m */; };
 		92A07C5B2081D2D700F72302 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C5A2081D2D700F72302 /* HomeViewController.m */; };
 		92A07C5E2081D2D700F72302 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A07C5D2081D2D700F72302 /* FavoriteViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		925B55AA2086F219002A4CB8 /* FiatConvertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FiatConvertViewController.h; sourceTree = "<group>"; };
+		925B55AB2086F219002A4CB8 /* FiatConvertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FiatConvertViewController.m; sourceTree = "<group>"; };
 		92A07C532081D2D700F72302 /* CryptocurrencyPriceTicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptocurrencyPriceTicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92A07C562081D2D700F72302 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		92A07C572081D2D700F72302 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				92A07C5A2081D2D700F72302 /* HomeViewController.m */,
 				92A07C5C2081D2D700F72302 /* FavoriteViewController.h */,
 				92A07C5D2081D2D700F72302 /* FavoriteViewController.m */,
+				925B55AA2086F219002A4CB8 /* FiatConvertViewController.h */,
+				925B55AB2086F219002A4CB8 /* FiatConvertViewController.m */,
 				92A07C5F2081D2D700F72302 /* Main.storyboard */,
 				92A07C622081D2D700F72302 /* Assets.xcassets */,
 				92A07C642081D2D700F72302 /* LaunchScreen.storyboard */,
@@ -413,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				925B55AC2086F219002A4CB8 /* FiatConvertViewController.m in Sources */,
 				92A07CCD2081FBBF00F72302 /* Http_Handler.mm in Sources */,
 				92A07C5E2081D2D700F72302 /* FavoriteViewController.m in Sources */,
 				92A07CEE20825E7800F72302 /* TableCurrency.m in Sources */,

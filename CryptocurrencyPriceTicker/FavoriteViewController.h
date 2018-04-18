@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavoriteViewController : UIViewController
-
+@interface FavoriteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @end
 

@@ -65,6 +65,8 @@
             
             if ([self isTheSameObject:currency])
             {
+                TableCurrency *theSameCurrency = [self fetchCurrencyByID:currency.coinID];
+                currency.favorite = theSameCurrency.favorite;
                 [[CoreData_Mgr singleton] modifyObject:currency];
             }
             else
@@ -74,6 +76,11 @@
             }
         }
     }
+}
+
+- (void)storeModifyCurrency:(TableCurrency*)currency
+{
+    [[CoreData_Mgr singleton] modifyObject:currency];
 }
 
 - (void)storeGlobalData:(id)dataSource
@@ -167,6 +174,23 @@
     TableCurrency *currency = [TableCurrency wrapper:item];
     
     return currency;
+}
+
+- (NSArray*)fetchCurrenciesByFavorite
+{
+    NSArray *itemArray = [[CoreData_Mgr singleton].managedObjectContext fetchObjectsForEntityName:@"Currency" predicateWithFormat:@"favorite = 1"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"rank" ascending:YES];
+    NSMutableArray *sortArray = [[NSMutableArray alloc] init];
+    [sortArray addObjectsFromArray:[itemArray sortedArrayUsingDescriptors:@[sortDescriptor]]];
+    
+    NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    
+    for (Currency *item in sortArray)
+    {
+        [returnArray addObject:[TableCurrency wrapper:item]];
+    }
+    
+    return returnArray;
 }
 
 - (TableGlobalData*)fetchGlobaData
