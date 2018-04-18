@@ -67,11 +67,33 @@
             {
                 TableCurrency *theSameCurrency = [self fetchCurrencyByID:currency.coinID];
                 currency.favorite = theSameCurrency.favorite;
+                currency.fiat_convert = theSameCurrency.fiat_convert;
+                NSMutableDictionary *valueDict = [NSMutableDictionary dictionary];
+                for (NSString *key in item.allKeys)
+                {
+                    if ([key hasPrefix:@"price_"] ||
+                        [key hasPrefix:@"24h_volume_"] ||
+                        [key hasPrefix:@"market_cap_"])
+                    {
+                        [valueDict setValue:[item objectForKey:key] forKey:key];
+                    }
+                }
+                
+                if ([currency.fiat_convert count] == 0)
+                {
+                    currency.fiat_convert = valueDict;
+                }
+                else
+                {
+                    [currency.fiat_convert addEntriesFromDictionary:valueDict];
+                }
+                
                 [[CoreData_Mgr singleton] modifyObject:currency];
             }
             else
             {
                 currency.favorite = @(NO);
+                currency.fiat_convert = [NSMutableDictionary dictionary];
                 [[CoreData_Mgr singleton] addObject:currency];
             }
         }

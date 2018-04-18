@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FiatConvertViewController : UIViewController
+@interface FiatConvertViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) NSString *coinID;
 
 @end

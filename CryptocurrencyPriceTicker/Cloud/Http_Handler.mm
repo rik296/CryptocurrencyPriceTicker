@@ -143,7 +143,15 @@ NSString *const kNetworkStatusChange = @"NetworkStatusChange";
         case E_API_GET_TICKER_SPECIFIC:
         {
             NSString *coinID = [userInfo objectForKey:@"coinID"];
-            return [apiServer stringByAppendingString:[NSString stringWithFormat:@"%@ticker/%@", [urlVersion objectForKey:@"v1"], coinID]];
+            if ([userInfo objectForKey:@"convert"] != nil)
+            {
+                NSString *parameterString = [NSString stringWithFormat:@"?convert=%@", [userInfo objectForKey:@"convert"]];
+                return [apiServer stringByAppendingString:[NSString stringWithFormat:@"%@ticker/%@/%@", [urlVersion objectForKey:@"v1"], coinID, parameterString]];
+            }
+            else
+            {
+                return [apiServer stringByAppendingString:[NSString stringWithFormat:@"%@ticker/%@", [urlVersion objectForKey:@"v1"], coinID]];
+            }
         }
             break;
             

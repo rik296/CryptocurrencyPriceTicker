@@ -21,9 +21,10 @@
     BOOL isDoingSync;
     NSInteger currentFetchStart;
     NSNumberFormatter *numberFormatter;
+    UITapGestureRecognizer *tapgr;
     
     __weak IBOutlet UITableView *m_tableView;
-    __weak IBOutlet UIActivityIndicatorView *loadingIndicator;
+    __weak IBOutlet UIActivityIndicatorView *refreshIndicator;
     __weak IBOutlet UISearchBar *keywordSearchBar;
     __weak IBOutlet UISegmentedControl *m_segment;
     __weak IBOutlet NSLayoutConstraint *constraintBottomTableView;
@@ -46,11 +47,12 @@
     m_segment.selectedSegmentIndex = 1;
     m_tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(handleCellViewLongPress:)];
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleCellViewLongPress:)];
     lpgr.minimumPressDuration = 1.3; //seconds
     lpgr.delegate = self;
     [m_tableView addGestureRecognizer:lpgr];
+    
+    tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTableViewTap:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -72,6 +74,7 @@
 
 - (void)initDisplayData
 {
+    [refreshIndicator startAnimating];
     currentFetchStart = 0;
     isDoingSync = YES;
     
@@ -107,9 +110,11 @@
               
               currentFetchStart += 100;
               isDoingSync = NO;
+              [refreshIndicator stopAnimating];
           }
           failure:^(NSInteger retCode) {
               isDoingSync = NO;
+              [refreshIndicator stopAnimating];
           }];
      }
      failure:^(NSInteger retCode) {
@@ -119,6 +124,7 @@
 
 - (void)refreshTop100Data
 {
+    [refreshIndicator startAnimating];
     currentFetchStart = 0;
     
     [[API_Handler singleton]
@@ -138,9 +144,11 @@
          isDoingSync = NO;
          m_tableView.contentOffset = CGPointMake(0, 0 - m_tableView.contentInset.top);
          [m_tableView reloadData];
+         [refreshIndicator stopAnimating];
      }
      failure:^(NSInteger retCode) {
          isDoingSync = NO;
+         [refreshIndicator stopAnimating];
      }];
 }
 
@@ -161,7 +169,7 @@
          
          constraintBottomTableView.constant = 0.0;
          [self.view layoutIfNeeded];
-         [loadingIndicator stopAnimating];
+         [refreshIndicator stopAnimating];
          
          currentFetchStart += 100;
          isDoingSync = NO;
@@ -170,7 +178,7 @@
          isDoingSync = NO;
          constraintBottomTableView.constant = 0.0;
          [self.view layoutIfNeeded];
-         [loadingIndicator stopAnimating];
+         [refreshIndicator stopAnimating];
      }];
 }
 
@@ -259,9 +267,13 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
+    TableCurrency *theCurrency = [filterCurrenciesArray objectAtIndex:[indexPath row]];
+    
     UIStoryboard* story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self.navigationController pushViewController:[story instantiateViewControllerWithIdentifier:@"FiatConvertViewController"] animated:YES];
+    FiatConvertViewController *vc = [story instantiateViewControllerWithIdentifier:@"FiatConvertViewController"];
+    vc.coinID = theCurrency.coinID;
+    [self.navigationController pushViewController:vc animated:YES];
     
     [m_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -274,8 +286,6 @@
     UIEdgeInsets inset = aScrollView.contentInset;
     float y = offset.y + bounds.size.height - inset.bottom;
     float h = size.height;
- 
-    [keywordSearchBar resignFirstResponder];
     
     if (h > [UIScreen mainScreen].bounds.size.height)
     {
@@ -286,8 +296,7 @@
             isDoingSync = YES;
             constraintBottomTableView.constant = 57.0;
             [self.view layoutIfNeeded];
-            [loadingIndicator setHidden:NO];
-            [loadingIndicator startAnimating];
+            [refreshIndicator startAnimating];
             [self getMoreData];
         }
     }
@@ -340,12 +349,20 @@
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
+- (void)handleTableViewTap:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [m_tableView removeGestureRecognizer:tapgr];
+    [keywordSearchBar resignFirstResponder];
+}
+
 #pragma mark -
 #pragma mark Search Bar delegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"Filter : %@", searchText);
+    [m_tableView removeGestureRecognizer:tapgr];
+    [m_tableView addGestureRecognizer:tapgr];
     [m_tableView reloadData];
 }
 

@@ -10,6 +10,7 @@
 #import "API_Handler.h"
 #import "DataBase_Handler.h"
 #import "CurrencyCell.h"
+#import "FiatConvertViewController.h"
 
 @interface FavoriteViewController ()
 {
@@ -17,10 +18,12 @@
     NSMutableArray *filterCurrenciesArray;
     BOOL isDoingSync;
     NSNumberFormatter *numberFormatter;
+    UITapGestureRecognizer *tapgr;
     
     __weak IBOutlet UITableView *m_tableView;
     __weak IBOutlet UISearchBar *keywordSearchBar;
     __weak IBOutlet UISegmentedControl *m_segment;
+    __weak IBOutlet UIActivityIndicatorView *refreshIndicator;
     __weak IBOutlet NSLayoutConstraint *constraintBottomTableView;
 }
 @end
@@ -40,6 +43,8 @@
     
     m_segment.selectedSegmentIndex = 1;
     m_tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTableViewTap:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,6 +53,7 @@
 }
 
 - (IBAction)refreshAction:(id)sender {
+    [refreshIndicator startAnimating];
     NSMutableArray *tmpCurrencies = [NSMutableArray array];
     [tmpCurrencies setArray:currenciesArray];
     [currenciesArray removeAllObjects];
@@ -72,6 +78,7 @@
 {
     if ([leftCurrencies count] == 0)
     {
+        [refreshIndicator stopAnimating];
         [self initDisplayData];
         return;
     }
@@ -182,8 +189,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
+    TableCurrency *theCurrency = [filterCurrenciesArray objectAtIndex:[indexPath row]];
+    
     UIStoryboard* story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    [self.navigationController pushViewController:[story instantiateViewControllerWithIdentifier:@"FiatConvertViewController"] animated:YES];
+    FiatConvertViewController *vc = [story instantiateViewControllerWithIdentifier:@"FiatConvertViewController"];
+    vc.coinID = theCurrency.coinID;
+    [self.navigationController pushViewController:vc animated:YES];
     
     [m_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -204,8 +215,9 @@
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)aScrollView
+- (void)handleTableViewTap:(UITapGestureRecognizer *)gestureRecognizer
 {
+    [m_tableView removeGestureRecognizer:tapgr];
     [keywordSearchBar resignFirstResponder];
 }
 
@@ -215,6 +227,8 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"Filter : %@", searchText);
+    [m_tableView removeGestureRecognizer:tapgr];
+    [m_tableView addGestureRecognizer:tapgr];
     [m_tableView reloadData];
 }
 
