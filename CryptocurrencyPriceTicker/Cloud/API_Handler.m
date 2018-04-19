@@ -39,6 +39,19 @@
     return instance;
 }
 
+- (BOOL)isNetworkEnable
+{
+    NetworkStatus status = [[Http_Handler singleton] currentNetworkStatus];
+    if (status == ReachableViaWiFi || status == ReachableViaWWAN)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
 - (void)getTicker:(E_DATA_SOURCE)dataSource
          andStart:(NSInteger)start
          andLimit:(NSInteger)limit

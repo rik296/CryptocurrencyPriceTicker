@@ -20,6 +20,8 @@ typedef NS_ENUM(NSUInteger, E_DATA_SOURCE)
 
 + (API_Handler*)singleton;
 
+- (BOOL)isNetworkEnable;
+
 - (void)getTicker:(E_DATA_SOURCE)dataSource
          andStart:(NSInteger)start
          andLimit:(NSInteger)limit

@@ -290,7 +290,7 @@
     if (h > [UIScreen mainScreen].bounds.size.height)
     {
         float reload_distance = 10.0;
-        if ((y > h + reload_distance) && (isDoingSync == NO))
+        if ((y > h + reload_distance) && (isDoingSync == NO) && [[API_Handler singleton] isNetworkEnable])
         {
             NSLog(@"[HomeViewController] Get More Currencies");
             isDoingSync = YES;

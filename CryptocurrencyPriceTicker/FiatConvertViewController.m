@@ -200,18 +200,26 @@
         if (row == 0)
         {
             NSString *key_price = [NSString stringWithFormat:@"price_%@", [fiatCode lowercaseString]];
-            displayValue = [[fiatConvert objectForKey:key_price] doubleValue];
-            
+            if ([fiatConvert objectForKey:key_price] != nil && ![[fiatConvert objectForKey:key_price] isKindOfClass:[NSNull class]])
+            {
+                displayValue = [[fiatConvert objectForKey:key_price] doubleValue];
+            }
         }
         else if (row == 1)
         {
             NSString *key_volume = [NSString stringWithFormat:@"24h_volume_%@", [fiatCode lowercaseString]];
-            displayValue = [[fiatConvert objectForKey:key_volume] doubleValue];
+            if ([fiatConvert objectForKey:key_volume] != nil && ![[fiatConvert objectForKey:key_volume] isKindOfClass:[NSNull class]])
+            {
+                displayValue = [[fiatConvert objectForKey:key_volume] doubleValue];
+            }
         }
         else
         {
             NSString *key_market = [NSString stringWithFormat:@"market_cap_%@", [fiatCode lowercaseString]];
-            displayValue = [[fiatConvert objectForKey:key_market] doubleValue];
+            if ([fiatConvert objectForKey:key_market] != nil && ![[fiatConvert objectForKey:key_market] isKindOfClass:[NSNull class]])
+            {
+                displayValue = [[fiatConvert objectForKey:key_market] doubleValue];
+            }
         }
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:[NSNumber numberWithDouble:displayValue]]];
