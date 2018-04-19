@@ -242,6 +242,7 @@
     NSError *error = nil;
     NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType
                                                                                               URL:storeSourceUrl
+                                                                                          options:nil
                                                                                             error:&error];
     if (sourceMetadata)
     {
