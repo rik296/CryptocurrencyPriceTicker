@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="owf-Bl-oJY">
-                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vXo-1l-ozb" id="MWT-py-NH2"/>
@@ -124,12 +124,12 @@
                         <constraints>
                             <constraint firstItem="5fM-vE-dHd" firstAttribute="bottom" secondItem="owf-Bl-oJY" secondAttribute="bottom" constant="20" id="HzJ-Xz-ehz"/>
                             <constraint firstItem="owf-Bl-oJY" firstAttribute="centerX" secondItem="yaz-bU-QM3" secondAttribute="centerX" id="NpR-eP-Tro"/>
-                            <constraint firstItem="owf-Bl-oJY" firstAttribute="leading" secondItem="5fM-vE-dHd" secondAttribute="leading" constant="16" id="Q9B-Hm-242"/>
+                            <constraint firstItem="owf-Bl-oJY" firstAttribute="leading" secondItem="5fM-vE-dHd" secondAttribute="leading" id="Q9B-Hm-242"/>
                             <constraint firstItem="yXO-C7-MQW" firstAttribute="centerY" secondItem="yaz-bU-QM3" secondAttribute="centerY" id="Wq3-uC-sX2"/>
                             <constraint firstItem="owf-Bl-oJY" firstAttribute="centerY" secondItem="yaz-bU-QM3" secondAttribute="centerY" id="czP-xT-6iD"/>
                             <constraint firstItem="yXO-C7-MQW" firstAttribute="centerX" secondItem="yaz-bU-QM3" secondAttribute="centerX" id="jqN-eY-FbT"/>
                             <constraint firstItem="owf-Bl-oJY" firstAttribute="top" secondItem="5fM-vE-dHd" secondAttribute="top" id="r7M-gZ-90K"/>
-                            <constraint firstItem="5fM-vE-dHd" firstAttribute="trailing" secondItem="owf-Bl-oJY" secondAttribute="trailing" constant="16" id="yFS-AS-y3v"/>
+                            <constraint firstItem="5fM-vE-dHd" firstAttribute="trailing" secondItem="owf-Bl-oJY" secondAttribute="trailing" id="yFS-AS-y3v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5fM-vE-dHd"/>
                     </view>

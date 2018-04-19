@@ -145,7 +145,7 @@
     switch (section)
     {
         case 0:
-            return @"Currency";
+            return @"CryptoCurrency";
             break;
             
         default:
@@ -239,11 +239,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
     CGPoint offset = aScrollView.contentOffset;
-    CGRect bounds = aScrollView.bounds;
-    CGSize size = aScrollView.contentSize;
-    UIEdgeInsets inset = aScrollView.contentInset;
-    float y = offset.y + bounds.size.height - inset.bottom;
-    float h = size.height;
     
     if (offset.y < -100 && (isDoingSync == NO))
     {

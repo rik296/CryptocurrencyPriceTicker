@@ -1,5 +1,5 @@
 //
-//  SecondViewController.m
+//  FavoriteViewController.m
 //  CryptocurrencyPriceTicker
 //
 //  Created by Rik Tsai on 2018/4/14.

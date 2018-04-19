@@ -48,7 +48,7 @@
     m_tableView.allowsMultipleSelectionDuringEditing = NO;
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleCellViewLongPress:)];
-    lpgr.minimumPressDuration = 1.3; //seconds
+    lpgr.minimumPressDuration = 1.0; //seconds
     lpgr.delegate = self;
     [m_tableView addGestureRecognizer:lpgr];
     
@@ -300,31 +300,12 @@
             [self getMoreData];
         }
     }
-    
-    /*
-    if (offset.y < -100 && (isDoingSync == NO))
-    {
-        NSLog(@"[HomeViewController] Refresh Top 100 Currencies");
-        isDoingSync = YES;
-        [self refreshTop100Data];
-    }
-     */
 }
 
 -(void)handleCellViewLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     CGPoint p = [gestureRecognizer locationInView:m_tableView];
-    
     NSIndexPath *indexPath = [m_tableView indexPathForRowAtPoint:p];
-    if (indexPath == nil) {
-        NSLog(@"long press on table view but not on a row");
-    }
-    else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"long press on table view at row %ld", indexPath.row);
-    }
-    else {
-        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
-    }
     
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Add to My Favorite?" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
